@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NGOs (Non-Government Organization System)</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f4f6f9; }
+    header { background: #2c3e50; color: #fff; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { margin: 0; font-size: 22px; }
+    header button { background: #fff; color: #2c3e50; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .container { display: flex; min-height: 100vh; }
+    nav { width: 220px; background: #34495e; color: #fff; }
+    nav ul { list-style: none; padding: 0; margin: 0; }
+    nav ul li { padding: 15px 20px; border-bottom: 1px solid #2c3e50; cursor: pointer; }
+    nav ul li:hover { background: #3d566e; }
+    nav ul li.active { background: #1abc9c; }
+    main { flex: 1; padding: 20px; }
+    .section { display: none; }
+    .section.active { display: block; }
+    h2 { color: #2c3e50; }
+    form { background: #fff; padding: 15px; border-radius: 6px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    form input, form select, form button { display: block; width: 100%; margin: 10px 0; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+    form button { background: #1abc9c; color: #fff; border: none; cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; background: #fff; margin-top: 10px; }
+    table th, table td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    table th { background: #ecf0f1; }
+    .card { background: #fff; padding: 15px; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    footer { background: #2c3e50; color: #fff; text-align: center; padding: 10px; }
+    #login { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f6f9; }
+    #login form { width: 300px; }
+    #mainApp { display: none; }
+  </style>
+</head>
+<body>
+
+<div id="login">
+  <form id="loginForm">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+<div id="mainApp">
+  <header>
+    <h1>NGOs (Non-Government Organization System)</h1>
+    <button id="logoutBtn">Logout</button>
+  </header>
+
+  <div class="container">
+    <nav>
+      <ul>
+        <li class="active" data-section="dashboard">Dashboard</li>
+        <li data-section="beneficiary">Beneficiary Registry System</li>
+        <li data-section="donation">Donation Tracking System</li>
+        <li data-section="project">Project Monitoring & Evaluation</li>
+        <li data-section="reports">Reports & Analytics</li>
+        <li data-section="users">User Management</li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- Dashboard -->
+      <div id="dashboard" class="section active">
+        <h2>Dashboard</h2>
+        <p>Quick overview of system components.</p>
+        <div class="dashboard" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;">
+          <div class="card"><h3>Beneficiary Registry</h3><p id="beneficiaryCount">Total Registered: 2</p></div>
+          <div class="card"><h3>Donation Tracking</h3><p id="donationTotal">Total Donations: ₱150,000</p></div>
+          <div class="card"><h3>Project Monitoring</h3><p id="projectCount">Active Projects: 2</p></div>
+          <div class="card"><h3>Reports & Analytics</h3><p id="reportCount">Reports Generated: 0</p></div>
+          <div class="card"><h3>User Management</h3><p id="userCount">Total Users: 2</p></div>
+        </div>
+      </div>
+
+      <!-- Beneficiary Registry System -->
+      <div id="beneficiary" class="section">
+        <h2>Beneficiary Registry System</h2>
+        <form id="beneficiaryForm">
+          <h3>Register Beneficiary</h3>
+          <input type="text" id="bName" placeholder="Full Name" required>
+          <input type="number" id="bAge" placeholder="Age" required>
+          <input type="text" id="bProgram" placeholder="Program Enrolled" required>
+          <button type="submit">Add Beneficiary</button>
+        </form>
+        <table>
+          <thead><tr><th>Name</th><th>Age</th><th>Program</th></tr></thead>
+          <tbody id="beneficiaryTable">
+            <tr><td>Maria Santos</td><td>32</td><td>Livelihood Program</td></tr>
+            <tr><td>Juan Dela Cruz</td><td>45</td><td>Health Assistance</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Donation Tracking System -->
+      <div id="donation" class="section">
+        <h2>Donation Tracking System</h2>
+        <form id="donationForm">
+          <h3>Record Donation</h3>
+          <input type="text" id="dName" placeholder="Donor Name" required>
+          <input type="number" id="dAmount" placeholder="Amount (₱)" required>
+          <input type="text" id="dPurpose" placeholder="Purpose/Allocation" required>
+          <button type="submit">Add Donation</button>
+        </form>
+        <table>
+          <thead><tr><th>Donor</th><th>Amount</th><th>Purpose</th></tr></thead>
+          <tbody id="donationTable">
+            <tr><td>ABC Foundation</td><td>100000</td><td>Scholarship Fund</td></tr>
+            <tr><td>XYZ Corp</td><td>50000</td><td>Medical Supplies</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Project Monitoring & Evaluation -->
+      <div id="project" class="section">
+        <h2>Project Monitoring & Evaluation</h2>
+        <form id="projectForm">
+          <h3>Add Project</h3>
+          <input type="text" id="pTitle" placeholder="Project Title" required>
+          <input type="text" id="pStatus" placeholder="Status (Ongoing/Completed)" required>
+          <input type="text" id="pNotes" placeholder="Evaluation Notes">
+          <button type="submit">Add Project</button>
+        </form>
+        <table>
+          <thead><tr><th>Title</th><th>Status</th><th>Evaluation</th></tr></thead>
+          <tbody id="projectTable">
+            <tr><td>Community Feeding Program</td><td>Ongoing</td><td>Reaching 500 children weekly</td></tr>
+            <tr><td>Water Sanitation Project</td><td>Completed</td><td>Improved access for 200 households</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Reports & Analytics -->
+      <div id="reports" class="section">
+        <h2>Reports & Analytics</h2>
+        <div class="card">
+          <h3>Summary</h3>
+          <p id="reportBeneficiaries">Total Beneficiaries: 2</p>
+          <p id="reportDonations">Total Donations: ₱150,000</p>
+          <p id="reportProjects">Active Projects: 2</p>
+          <p id="reportUsers">Total Users: 2</p>
+        </div>
+      </div>
+
+      <!-- User Management -->
+      <div id="users" class="section">
+        <h2>User Management</h2>
+        <form id="userForm">
+          <h3>Create User</h3>
+          <input type="text" id="uName" placeholder="Username" required>
+          <input type="password" id="uPass" placeholder="Password" required>
+          <select id="uRole" required>
+            <option value="">Select Role</option>
+            <option value="Admin">Admin</option>
+            <option value="Staff">Staff</option>
+            <option value="Viewer">Viewer</option>
+          </select>
+          <button type="submit">Add User</button>
+        </form>
+        <table id="userTable">
+          <thead><tr><th>Username</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>admin01</td><td>Admin</td></tr>
+            <tr><td>staff01</td><td>Staff</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <p>Enterprise Architecture Prototype © 2025</p>
+  </footer>
+</div>
+
+<script>
+  // Check login status on load
+  window.onload = function() {
+    if (localStorage.getItem('loggedIn') === 'true') {
+      showMainApp();
+    } else {
+      showLogin();
+    }
+  };
+
+  // Login form submission - always log in, even if not valid
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    localStorage.setItem('loggedIn', 'true');
+    showMainApp();
+  });
+
+  // Logout
+  document.getElementById('logoutBtn').addEventListener('click', function() {
+    localStorage.removeItem('loggedIn');
+    showLogin();
+  });
+
+  function showLogin() {
+    document.getElementById('login').style.display = 'flex';
+    document.getElementById('mainApp').style.display = 'none';
+  }
+
+  function showMainApp() {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('mainApp').style.display = 'block';
+    updateCounts(); // Ensure counts are updated on login
+  }
+
+  // Navigation toggle
+  const navItems = document.querySelectorAll('nav ul li');
+  const sections = document.querySelectorAll('.section');
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      navItems.forEach(nav => nav.classList.remove('active'));
+      item.classList.add('active');
+      sections.forEach(section => section.classList.remove('active'));
+      const sectionId = item.getAttribute('data-section');
+      document.getElementById(sectionId).classList.add('active');
+    });
+  });
+
+  // Function to update counts and reports
+  function updateCounts() {
+    // Beneficiaries
+    const beneficiaryCount = document.querySelectorAll('#beneficiaryTable tr').length;
+    document.getElementById('beneficiaryCount').textContent = `Total Registered: ${beneficiaryCount}`;
+    document.getElementById('reportBeneficiaries').textContent = `Total Beneficiaries: ${beneficiaryCount}`;
+
+    // Donations
+    const donationRows = document.querySelectorAll('#donationTable tr');
+    let totalDonations = 0;
+    donationRows.forEach(row => {
+      const amount = parseFloat(row.cells[1].textContent);
+      if (!isNaN(amount)) totalDonations += amount;
+    });
+    document.getElementById('donationTotal').textContent = `Total Donations: ₱${totalDonations.toLocaleString()}`;
+    document.getElementById('reportDonations').textContent = `Total Donations: ₱${totalDonations.toLocaleString()}`;
+
+    // Projects (total projects, as per initial dashboard)
+    const projectCount = document.querySelectorAll('#projectTable tr').length;
+    document.getElementById('projectCount').textContent = `Active Projects: ${projectCount}`;
+    document.getElementById('reportProjects').textContent = `Active Projects: ${projectCount}`;
+
+    // Users
+    const userCount = document.querySelectorAll('#userTable tbody tr').length;
+    document.getElementById('userCount').textContent = `Total Users: ${userCount}`;
+    document.getElementById('reportUsers').textContent = `Total Users: ${userCount}`;
+  }
+
+  // Beneficiary form submission
+  document.getElementById('beneficiaryForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('bName').value;
+    const age = document.getElementById('bAge').value;
+    const program = document.getElementById('bProgram').value;
+    const tbody = document.getElementById('beneficiaryTable');
+    const row = tbody.insertRow();
+    row.insertCell(0).textContent = name;
+    row.insertCell(1).textContent = age;
+    row.insertCell(2).textContent = program;
+    this.reset();
+    updateCounts();
+  });
+
+  // Donation form submission
+  document.getElementById('donationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('dName').value;
+    const amount = document.getElementById('dAmount').value;
+    const purpose = document.getElementById('dPurpose').value;
+    const tbody = document.getElementById('donationTable');
+    const row = tbody.insertRow();
+    row.insertCell(0).textContent = name;
+    row.insertCell(1).textContent = amount;
+    row.insertCell(2).textContent = purpose;
+    this.reset();
+    updateCounts();
+  });
+
+  // Project form submission
+  document.getElementById('projectForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const title = document.getElementById('pTitle').value;
+    const status = document.getElementById('pStatus').value;
+    const notes = document.getElementById('pNotes').value;
+    const tbody = document.getElementById('projectTable');
+    const row = tbody.insertRow();
+    row.insertCell(0).textContent = title;
+    row.insertCell(1).textContent = status;
+    row.insertCell(2).textContent = notes;
+    this.reset();
+    updateCounts();
+  });
+
+  // User form submission
+  document.getElementById('userForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('uName').value;
+    const role = document.getElementById('uRole').value;
+    const tbody = document.querySelector('#userTable tbody');
+    const row = tbody.insertRow();
+    row.insertCell(0).textContent = name;
+    row.insertCell(1).textContent = role;
+    this.reset();
+    updateCounts();
+  });
+</script>
+
+</body>
+</html>
